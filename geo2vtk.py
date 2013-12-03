@@ -55,6 +55,9 @@ secsInYear = 31557600
 if not os.path.exists(sys.argv[1]):
 	raise OSError('Invalid directory provided.\nUsage: python geo2vtk.py inputDirectory')
 
+toolsDir = os.getcwd()
+print 'Hi,' + toolsDir
+
 # Go into the directory provided as an argument
 if sys.argv[1] != '':
 	try:
@@ -205,7 +208,7 @@ for i in range(vtkIndex):
 	vtkName = vtkPrefix+'_ts'+str(i)+'.vtk'
 	print ['./gft2vtk', coordOut.name, 'disp'+str(i)+'.dat', 'stresses.dat', vtkName]
 	try:
-		subprocess.Popen(['./gft2vtk', coordOut.name, elOut.name, 'disp'+str(i)+'.dat', 'stresses.dat', vtkName]).wait()
+		subprocess.Popen(['.'+toolsDir+'gft2vtk', coordOut.name, elOut.name, 'disp'+str(i)+'.dat', 'stresses.dat', vtkName]).wait()
 	except OSError:
 		raise OSError('\'./gft2vtk\' executable not found. geo2vtk requires Greg\'s parser, gft2vtk.c')
 

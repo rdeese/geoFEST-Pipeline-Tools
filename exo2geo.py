@@ -218,7 +218,8 @@ while len(line) != 0:
 			print 'Getting boundary conditions...'
 			nodes = map(lambda X: X[:-1] if X[-1] == ',' else X, data[2:])
 			readInputToList(exoFile, nodes)
-			if data[0][-1] > 3:
+			if int(data[0][-1]) > 3:
+				print 'Getting nodes to plot data for...'
 				plotNodes = nodes
 			else:
 				for i in range(numNodes):
